@@ -512,11 +512,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(420px, 82%);
+  width: min(420px, 92%);
+  max-width: 92%;
   background: #ffffff;
   border: 2px solid rgba(201, 24, 74, 0.25);
   border-radius: var(--radius-xl);
-  padding: 28px 32px 24px;
+  padding: clamp(16px, 4vw, 24px) clamp(14px, 4vw, 24px);
   box-shadow:
     0 24px 70px rgba(0,0,0,0.55),
     0 0 40px rgba(201,24,74,0.18),
@@ -524,35 +525,39 @@
   text-align: center;
   z-index: 200;
   animation: none;
+  box-sizing: border-box;
 }
 
 .password-title {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   color: #c9184a;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
   text-shadow: none;
 }
 
 .password-input-group {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
+  width: 100%;
 }
 
 #envelope-password-input {
   flex: 1;
-  padding: 11px 15px;
+  min-width: 0;
+  padding: 10px 12px;
   background: #fff0f3;
   border: 1.5px solid rgba(201,24,74,0.4);
   border-radius: var(--radius-full);
   color: #800f2f;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   outline: none;
   transition: all 0.3s;
+  box-sizing: border-box;
 }
 
 #envelope-password-input::placeholder {
@@ -571,18 +576,19 @@
 }
 
 .password-submit-btn {
-  padding: 11px 18px;
+  padding: 10px 14px;
   background: linear-gradient(135deg, #c9184a 0%, #800f2f 100%);
   color: #ffffff;
   font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all 0.3s var(--ease-spring);
   white-space: nowrap;
   border: none;
+  flex-shrink: 0;
 }
 
 .password-submit-btn:hover {
