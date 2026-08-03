@@ -516,15 +516,32 @@ function showPersonalLetter(resolve) {
     if (inner.scrollTop > 40) hint.style.opacity = '0';
   }, { passive: true });
 
-  // Continue button
-  document.getElementById('pl-continue-btn').addEventListener('click', () => {
-    page.style.transition = 'opacity 0.8s ease';
-    page.style.opacity = '0';
-    setTimeout(() => {
-      page.remove();
-      resolve();
-    }, 820);
-  });
+  // Continue button (handles touch & click instantly)
+  const continueBtn = page.querySelector('#pl-continue-btn');
+  if (continueBtn) {
+    let triggered = false;
+    const onContinue = (e) => {
+      if (triggered) return;
+      triggered = true;
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      continueBtn.style.transform = 'scale(0.95)';
+      page.style.transition = 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+      page.style.opacity = '0';
+      page.style.transform = 'scale(0.98)';
+
+      setTimeout(() => {
+        if (page.parentNode) page.remove();
+        resolve();
+      }, 620);
+    };
+
+    continueBtn.addEventListener('click', onContinue);
+    continueBtn.addEventListener('touchend', onContinue);
+  }
 }
 
 function spawnEnvelopeSparkles(container) {

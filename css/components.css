@@ -285,14 +285,14 @@
   text-align: center;
 }
 
-/* 3D Envelope Container — Fully Responsive */
+/* 3D Envelope Container — Original Desktop Form */
 .intro-envelope-container {
   position: relative;
   perspective: 1400px;
   cursor: pointer;
-  width: min(840px, 92vw);
-  height: min(560px, 58vh);
-  min-height: 220px;
+  width: min(920px, 90vw);
+  height: min(640px, 72vh);
+  max-width: 920px;
   max-height: 680px;
   overflow: visible;
 }
@@ -1747,7 +1747,10 @@
   transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease;
   animation: plFadeInUp 0.7s 1.35s both;
   position: relative;
+  z-index: 10;
   overflow: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .pl-continue-btn::before {
