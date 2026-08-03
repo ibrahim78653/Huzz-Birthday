@@ -4,6 +4,7 @@
 
 import { getFinaleMemories, getImagePath } from '../engine/memoryEngine.js';
 import { settings } from '../../memories.js';
+import { resizeLenis } from '../core/scroll.js';
 
 let finaleTriggered = false;
 let heartCanvas = null;
@@ -234,6 +235,9 @@ function showFinaleMessage() {
 
   msg.style.transition = 'opacity 2s cubic-bezier(0.16,1,0.3,1)';
   msg.style.opacity = '1';
+
+  // Recalculate Lenis scroll bounds for mobile
+  resizeLenis();
 
   // Shimmer stars in background
   spawnFinaleStars();

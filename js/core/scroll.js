@@ -34,7 +34,20 @@ export function initSmoothScroll() {
 
   rafId = requestAnimationFrame(raf);
 
+  window.addEventListener('resize', () => {
+    if (lenis) lenis.resize();
+  }, { passive: true });
+
   return lenis;
+}
+
+/**
+ * Resize Lenis instance when DOM height updates
+ */
+export function resizeLenis() {
+  if (lenis && typeof lenis.resize === 'function') {
+    lenis.resize();
+  }
 }
 
 /**
@@ -52,6 +65,7 @@ export function stopSmoothScroll() {
 export function resumeSmoothScroll() {
   if (lenis) {
     lenis.start();
+    lenis.resize();
   }
 }
 

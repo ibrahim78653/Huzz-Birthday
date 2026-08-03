@@ -4,7 +4,7 @@
 
 import { distributeMemories, pickHiddenMemories } from './engine/memoryEngine.js';
 import { buildAllChapters, populatePinterestBoards } from './engine/chapterBuilder.js';
-import { initSmoothScroll, stopSmoothScroll, initScrollProgress, initNavDots } from './core/scroll.js';
+import { initSmoothScroll, stopSmoothScroll, initScrollProgress, initNavDots, resizeLenis } from './core/scroll.js';
 import {
   initLazyLoad, refreshLazyImages, preloadCritical,
   addGPUHints, initScrollReveal, initFilmDragScroll, initParallax
@@ -93,6 +93,7 @@ async function buildStory() {
     populatePinterestBoards();
     refreshLazyImages(); // Re-scan after pinterest builds
     initScrollReveal();   // Re-scan after all DOM is built
+    resizeLenis();        // Recalculate full page height for mobile scrolling
   });
 
   // Floating polaroids (starts after a delay)
