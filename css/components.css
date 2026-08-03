@@ -1112,8 +1112,8 @@
   padding: var(--sp-6) var(--sp-4);
   max-width: 700px;
   opacity: 0;
-  margin-top: clamp(240px, 35vh, 480px);
-  margin-bottom: 2rem;
+  margin-top: 480px;
+  margin-bottom: 3rem;
 }
 
 .finale-quote {
@@ -1287,7 +1287,7 @@
   .film-strip-perforations { width: 20px; }
   .film-perf-hole { width: 10px; height: 7px; }
 
-  .finale-message { margin-top: 280px; }
+  .finale-message { margin-top: 440px; }
 }
 
 @media (max-width: 480px) {
@@ -1304,7 +1304,7 @@
     width: 44px;
     height: 44px;
   }
-  .finale-message { margin-top: 200px; }
+  .finale-message { margin-top: 420px; }
 }
 
 /* ── Vignette ────────────────────────────────────────────── */

@@ -105,8 +105,8 @@ async function triggerHeartAssembly() {
   const W = heartCanvas.width;
   const H = heartCanvas.height;
   const cx = W / 2;
-  const cy = H * 0.42;
-  const scale = Math.min(W, H) * 0.022;
+  const cy = Math.min(270, H * 0.32);
+  const scale = Math.min(W, H) * 0.017;
 
   const count = Math.min(mems.length, 60);
   const heartPoints = generateHeartPoints(count, cx, cy, scale);
