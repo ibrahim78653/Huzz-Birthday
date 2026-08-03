@@ -72,28 +72,32 @@ function buildHeroChapter(chapter) {
 function buildPolaroidsChapter(chapter) {
   const [mem1, mem2] = chapter.memories;
   const sec = makeSection(chapter.id, ['chapter-polaroids-dyn']);
-  const rotations = [-5, 3, -2, 6, -4, 2];
+  const rotations = [-4, 3, -2, 5, -1, 2];
 
   sec.innerHTML = `
     <div class="ambient-orb orb-moon" style="width:400px;height:400px;bottom:-50px;left:-50px;"></div>
-    <div class="chapter-content" style="width:100%;display:flex;align-items:center;justify-content:center;padding:4rem 1.5rem;">
+    <div class="chapter-content" style="width:100%;display:flex;align-items:center;justify-content:center;padding:3rem 1rem;">
       <div class="polaroids-scene">
-        <div class="polaroid reveal-left" style="transform:rotate(${rotations[0]}deg);" id="pol-a">
-          <span class="tape" style="--tape-rotate:${rotations[1]}deg;"></span>
-          <div class="img-placeholder" style="width:100%;aspect-ratio:1/1;"></div>
-          <p class="polaroid-caption">${mem1 ? mem1.title : ''}</p>
-        </div>
-
-        <div class="polaroid reveal-right" style="transform:rotate(${rotations[2]}deg);" id="pol-b">
-          <span class="tape" style="--tape-rotate:${rotations[3]}deg;"></span>
-          <div class="img-placeholder" style="width:100%;aspect-ratio:1/1;"></div>
-          <p class="polaroid-caption">${mem2 ? mem2.title : ''}</p>
-        </div>
-
-        <div class="polaroids-note reveal delay-5" style="transform:rotate(${rotations[4]}deg);" id="pol-note">
+        <!-- 1. Note presented first on top -->
+        <div class="polaroids-note reveal" id="pol-note">
           <p class="note-text">"${mem1 ? mem1.caption : ''}"</p>
           ${mem2 ? `<p class="note-text" style="margin-top:0.75rem;">"${mem2.caption}"</p>` : ''}
           <p class="note-signature">— Always ♡</p>
+        </div>
+
+        <!-- 2. Photos presented below -->
+        <div class="polaroids-cards-wrap">
+          <div class="polaroid reveal-left delay-2" id="pol-a">
+            <span class="tape" style="--tape-rotate:${rotations[0]}deg;"></span>
+            <div class="img-placeholder" style="width:100%;aspect-ratio:1/1;"></div>
+            <p class="polaroid-caption">${mem1 ? mem1.title : ''}</p>
+          </div>
+
+          <div class="polaroid reveal-right delay-4" id="pol-b">
+            <span class="tape" style="--tape-rotate:${rotations[1]}deg;"></span>
+            <div class="img-placeholder" style="width:100%;aspect-ratio:1/1;"></div>
+            <p class="polaroid-caption">${mem2 ? mem2.title : ''}</p>
+          </div>
         </div>
       </div>
     </div>
