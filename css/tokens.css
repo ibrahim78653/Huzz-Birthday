@@ -1,0 +1,156 @@
+/* ============================================================
+   DESIGN TOKENS — Ultra Premium Romantic Birthday
+   ============================================================ */
+
+:root {
+  /* ── Color Palette ─────────────────────────────────────── */
+  --clr-void:        #0d0106;
+  --clr-deep:        #18030c;
+  --clr-dark:        #260515;
+  --clr-mid:         #380820;
+  --clr-surface:     #4c0b2b;
+  --clr-glass:       rgba(255,255,255,0.05);
+  --clr-glass-hover: rgba(255,255,255,0.1);
+
+  /* Red & Pink Palette */
+  --clr-rose:        #ff758f;
+  --clr-rose-deep:   #c9184a;
+  --clr-blush:       #ffb3c1;
+  --clr-petal:       #fff0f3;
+  --clr-crimson:     #800f2f;
+  --clr-magenta:     #a4133c;
+  --clr-hotpink:     #ff4d6d;
+  --clr-softpink:    #ffccd5;
+
+  /* Gold / Champagne Accents */
+  --clr-gold:        #f3c68f;
+  --clr-gold-light:  #fae1c3;
+  --clr-champagne:   #fff3e4;
+  --clr-amber:       #d48c46;
+
+  /* Moonlight / Pearl */
+  --clr-moon:        #fff0f5;
+  --clr-pearl:       #ffffff;
+  --clr-lavender:    #ffc2d1;
+  --clr-violet:      #9b5de5;
+
+  /* Warm Cream */
+  --clr-cream:       #fdf8f0;
+  --clr-parchment:   #f5ead8;
+  --clr-sepia:       #c8a870;
+
+  /* Text */
+  --clr-text-primary:   #fff0f3;
+  --clr-text-secondary: rgba(255,240,243,0.75);
+  --clr-text-muted:     rgba(255,240,243,0.45);
+  --clr-text-gold:      #f3c68f;
+  --clr-text-rose:      #ff758f;
+
+  /* ── Red & Pink Gradients ───────────────────────────────── */
+  --grad-hero:       radial-gradient(ellipse 130% 120% at 50% 10%, #4a0822 0%, #290413 40%, #150109 75%, #0b0004 100%);
+  --grad-red-pink:   linear-gradient(135deg, #590d2e 0%, #800f2f 35%, #a4133c 65%, #c9184a 85%, #ff4d6d 100%);
+  --grad-velvet:     linear-gradient(160deg, #1f030e 0%, #3d061c 30%, #5e0a2d 60%, #340417 85%, #120107 100%);
+  --grad-moonlight:  radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,117,143,0.3) 0%, rgba(201,24,74,0.12) 50%, transparent 80%);
+  --grad-rose-glow:  radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,77,109,0.25) 0%, transparent 70%);
+  --grad-gold-glow:  radial-gradient(ellipse 50% 50% at 50% 50%, rgba(243,198,143,0.2) 0%, transparent 70%);
+  --grad-vignette:   radial-gradient(ellipse 100% 100% at 50% 50%, transparent 35%, rgba(13,1,6,0.85) 100%);
+  --grad-paper:      linear-gradient(135deg, #fdf8f0 0%, #f5ead8 50%, #ede0cc 100%);
+  --grad-page-turn:  linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.3) 100%);
+
+  /* ── Shadows ────────────────────────────────────────────── */
+  --shadow-sm:       0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:       0 8px 32px rgba(0,0,0,0.5);
+  --shadow-lg:       0 20px 60px rgba(0,0,0,0.6);
+  --shadow-xl:       0 40px 100px rgba(0,0,0,0.7);
+  --shadow-glow-rose: 0 0 40px rgba(232,160,160,0.3), 0 0 80px rgba(232,160,160,0.1);
+  --shadow-glow-gold: 0 0 40px rgba(212,165,116,0.3), 0 0 80px rgba(212,165,116,0.1);
+  --shadow-glow-moon: 0 0 60px rgba(192,160,240,0.2), 0 0 120px rgba(192,160,240,0.1);
+  --shadow-photo:    0 10px 40px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  --shadow-polaroid: 4px 8px 24px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-paper:    2px 4px 12px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.1);
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-serif:      'Playfair Display', 'Georgia', serif;
+  --font-script:     'Dancing Script', cursive;
+  --font-sans:       'Inter', -apple-system, sans-serif;
+  --font-mono:       'JetBrains Mono', monospace;
+  --font-display:    'Cormorant Garamond', serif;
+
+  --fs-xs:    clamp(0.65rem, 1.2vw, 0.75rem);
+  --fs-sm:    clamp(0.8rem,  1.5vw, 0.9rem);
+  --fs-base:  clamp(0.95rem, 1.8vw, 1.1rem);
+  --fs-md:    clamp(1.1rem,  2vw,   1.25rem);
+  --fs-lg:    clamp(1.3rem,  2.5vw, 1.6rem);
+  --fs-xl:    clamp(1.6rem,  3.5vw, 2.2rem);
+  --fs-2xl:   clamp(2rem,    5vw,   3.2rem);
+  --fs-3xl:   clamp(2.8rem,  7vw,   5rem);
+  --fs-4xl:   clamp(3.5rem,  9vw,   7rem);
+  --fs-5xl:   clamp(4.5rem,  12vw,  10rem);
+
+  --lh-tight:  1.1;
+  --lh-snug:   1.3;
+  --lh-normal: 1.6;
+  --lh-loose:  1.9;
+  --ls-tight:  -0.03em;
+  --ls-normal: 0em;
+  --ls-wide:   0.05em;
+  --ls-wider:  0.12em;
+  --ls-widest: 0.25em;
+
+  /* ── Spacing ────────────────────────────────────────────── */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+
+  /* ── Border Radius ──────────────────────────────────────── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-full: 9999px;
+
+  /* ── Z-Index Stack ──────────────────────────────────────── */
+  --z-bg:      -10;
+  --z-base:    0;
+  --z-content: 10;
+  --z-overlay: 100;
+  --z-modal:   200;
+  --z-cursor:  1000;
+  --z-loading: 2000;
+
+  /* ── Transitions ────────────────────────────────────────── */
+  --ease-luxury:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --dur-fast:   200ms;
+  --dur-normal: 400ms;
+  --dur-slow:   700ms;
+  --dur-xslow:  1200ms;
+  --dur-cinema: 2000ms;
+
+  /* ── Blur ───────────────────────────────────────────────── */
+  --blur-sm:  blur(4px);
+  --blur-md:  blur(12px);
+  --blur-lg:  blur(24px);
+  --blur-xl:  blur(40px);
+
+  /* ── Film / Grain ───────────────────────────────────────── */
+  --film-grain-opacity: 0.04;
+  --film-vignette-opacity: 0.6;
+  --film-warm-tint: sepia(0.15) saturate(0.95) brightness(0.95);
+  --film-vintage-tint: sepia(0.3) saturate(0.8) brightness(0.9) contrast(1.05);
+}

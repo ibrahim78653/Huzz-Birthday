@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050408" />
+
+  <!-- SEO -->
+  <title>Happy Birthday, My Love — A Cinematic Story</title>
+  <meta name="description" content="A handcrafted cinematic birthday experience — an emotional storybook of beautiful memories." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Happy Birthday — A Story For You" />
+  <meta property="og:description" content="A premium cinematic birthday experience." />
+  <meta property="og:type" content="website" />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- Critical CSS (inline for performance) -->
+  <style>
+    /* Critical path — prevents FOUC */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #050408;
+      color: #f8f4ff;
+      overflow: hidden; /* until intro completes */
+    }
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: #050408;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     GRAIN OVERLAY (always present)
+══════════════════════════════════════════════════════════ -->
+<div class="grain-overlay" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     CUSTOM CURSOR (desktop only)
+══════════════════════════════════════════════════════════ -->
+<div class="cursor-outer" aria-hidden="true"></div>
+<div class="cursor-inner" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     SCROLL PROGRESS BAR
+══════════════════════════════════════════════════════════ -->
+<div class="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     CHAPTER NAVIGATION DOTS
+══════════════════════════════════════════════════════════ -->
+<nav class="nav-dots" aria-label="Chapter navigation"></nav>
+
+<!-- ══════════════════════════════════════════════════════
+     MUSIC TOGGLE
+══════════════════════════════════════════════════════════ -->
+<button class="music-toggle" id="music-toggle" title="Toggle music" aria-label="Toggle background music">
+  🎵
+</button>
+
+<!-- Optional: add assets/audio/music.mp3 and set features.music = true in memories.js -->
+<!-- <audio id="bg-music" src="assets/audio/music.mp3" loop preload="none"></audio> -->
+
+<!-- ══════════════════════════════════════════════════════
+     LOADING SCREEN — Phase 2
+══════════════════════════════════════════════════════════ -->
+<div id="loading-screen" aria-live="polite" role="status">
+  <canvas id="stars-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient orbs -->
+  <div class="ambient-orb orb-rose" style="width:300px;height:300px;bottom:-50px;left:-50px;animation:breathe 6s ease-in-out infinite;" aria-hidden="true"></div>
+  <div class="ambient-orb orb-moon" style="width:250px;height:250px;top:-50px;right:-50px;animation:breathe 8s ease-in-out infinite 2s;" aria-hidden="true"></div>
+
+  <div style="position:relative;text-align:center;">
+    <h1 class="loading-title">Loading your story...</h1>
+    <p class="loading-subtitle">With all my love</p>
+    <div class="loading-dots" aria-hidden="true">
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+    </div>
+  </div>
+
+  <div class="loading-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     ENVELOPE INTRO PAGE — Phase 2 Key Entry
+══════════════════════════════════════════════════════════ -->
+<div id="envelope-intro-screen" style="display:none;" role="dialog" aria-modal="true" aria-label="Envelope Introduction">
+  <canvas id="envelope-stars" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;"></canvas>
+
+  <div class="moonlight-overlay" aria-hidden="true"></div>
+  <div class="ambient-orb orb-rose" style="width:500px;height:500px;top:-100px;left:-100px;opacity:0.25;" aria-hidden="true"></div>
+  <div class="ambient-orb orb-gold" style="width:400px;height:400px;bottom:-100px;right:-100px;opacity:0.2;" aria-hidden="true"></div>
+
+  <div class="envelope-intro-wrapper">
+    <p class="envelope-prompt-title">A special letter for you... Click to open</p>
+
+    <!-- 3D Off-White Envelope -->
+    <div class="intro-envelope-container" id="main-intro-envelope">
+      <div class="intro-envelope">
+        <!-- Flap (top folding part) -->
+        <div class="intro-envelope-flap"></div>
+        
+        <!-- Interior letter that slides out -->
+        <div class="intro-envelope-letter" id="intro-envelope-letter">
+          <div class="letter-content">
+            <span class="letter-sparkle">✨</span>
+            <p class="letter-heading">For My Love</p>
+            <p class="letter-sub">Happy Birthday ❤️</p>
+          </div>
+        </div>
+
+        <!-- Envelope Body (Off-White Paper) -->
+        <div class="intro-envelope-body">
+          <div class="envelope-fold-left"></div>
+          <div class="envelope-fold-right"></div>
+          <div class="envelope-fold-bottom"></div>
+
+          <!-- Bottom Middle Text -->
+          <div class="envelope-to-tag">
+            TO MY LOVE HUZEFA ❤️
+          </div>
+        </div>
+
+        <!-- Center Heart Shape Seal -->
+        <div class="intro-heart-seal" id="intro-heart-seal" title="Click to unlock">
+          <svg class="heart-seal-icon" viewBox="0 0 32 32" width="38" height="38">
+            <path d="M16 28.5C16 28.5 3 19.5 3 11.5C3 7.36 6.36 4 10.5 4C13.06 4 15.3 5.3 16 7.3C16.7 5.3 18.94 4 21.5 4C25.64 4 29 7.36 29 11.5C29 19.5 16 28.5 16 28.5Z" fill="url(#waxHeartGradient)"/>
+            <defs>
+              <radialGradient id="waxHeartGradient" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#ff5e62"/>
+                <stop offset="45%" stop-color="#d63031"/>
+                <stop offset="100%" stop-color="#8b0000"/>
+              </radialGradient>
+            </defs>
+          </svg>
+          <div class="seal-ring"></div>
+        </div>
+
+        <!-- Password Modal Bar (Centered on envelope) -->
+        <div class="envelope-password-modal" id="envelope-password-modal" style="display:none;">
+          <div class="password-modal-content">
+            <p class="password-title">!! Secret Password Required !!</p>
+            
+            <form id="envelope-password-form" onsubmit="return false;">
+              <div class="password-input-group">
+                <input type="password" id="envelope-password-input" autocomplete="off" placeholder="Enter password..." required />
+                <button type="submit" id="envelope-password-btn" class="password-submit-btn">
+                  Unlock ♡
+                </button>
+              </div>
+              <p class="password-error-msg" id="password-error-msg" style="display:none;"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     INTRO OVERLAY — Phase 2
+══════════════════════════════════════════════════════════ -->
+<div id="intro-overlay" style="display:none;" role="dialog" aria-modal="true" aria-label="Birthday introduction">
+  <canvas id="intro-stars" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;"></canvas>
+
+  <!-- Ambient atmosphere -->
+  <div class="moonlight-overlay" aria-hidden="true"></div>
+  <div class="ambient-orb orb-rose" style="width:600px;height:600px;bottom:-150px;right:-100px;opacity:0.28;background:radial-gradient(circle,#ff1a1a,transparent 70%);" aria-hidden="true"></div>
+  <div class="ambient-orb orb-rose" style="width:500px;height:500px;top:-100px;left:-100px;opacity:0.22;background:radial-gradient(circle,#cc0000,transparent 70%);" aria-hidden="true"></div>
+  <div class="ambient-orb orb-rose" style="width:350px;height:350px;top:25%;right:3%;opacity:0.18;background:radial-gradient(circle,#ff4040,transparent 70%);" aria-hidden="true"></div>
+
+  <!-- Moon -->
+  <div style="
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f0e6ff, #c9b8e8 60%, #7c5cbf);
+    box-shadow: 0 0 50px rgba(200,175,255,0.5), 0 0 100px rgba(200,175,255,0.2);
+    animation: moonGlow 4s ease-in-out infinite;
+  " aria-hidden="true"></div>
+
+  <div class="intro-content">
+    <p class="intro-eyebrow">With all my love</p>
+
+    <h1 class="intro-headline">
+      Happy Birthday,<br>
+      <span class="highlight">My Love</span>
+    </h1>
+
+    <p class="intro-tagline">A journey worth remembering</p>
+
+    <button class="btn-start-journey" id="btn-start" aria-label="Begin the birthday experience">
+      Begin the Story
+      <span class="btn-arrow" aria-hidden="true">→</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     HIDDEN MEMORY OVERLAY
+══════════════════════════════════════════════════════════ -->
+<div id="hidden-reveal-overlay" class="hidden-reveal-overlay" role="dialog" aria-modal="true" aria-label="Hidden memory revealed">
+  <div class="hidden-reveal-inner">
+    <img id="hidden-reveal-img" src="" alt="Hidden memory" style="filter:sepia(0.15) saturate(0.95);" />
+    <h3 id="hidden-reveal-title" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:#f0e6ff;margin-top:1.5rem;"></h3>
+    <p id="hidden-reveal-caption" style="font-family:'Libre Baskerville',serif;font-style:italic;font-size:0.9rem;color:rgba(248,244,255,0.7);margin-top:0.75rem;line-height:1.7;"></p>
+    <button id="hidden-reveal-close" style="
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 1px solid rgba(212,165,116,0.5);
+      border-radius: 9999px;
+      color: rgba(248,244,255,0.8);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    " aria-label="Close hidden memory">
+      ✦ Close
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     MAIN APP — Chapters built dynamically by JS
+══════════════════════════════════════════════════════════ -->
+<main id="app" aria-label="Birthday story chapters">
+  <!-- Chapters are generated by chapterBuilder.js based on memories.js -->
+
+  <!--
+    ╔═══════════════════════════════════════════════╗
+    ║  HOW TO PERSONALIZE:                          ║
+    ║  1. Add images to assets/images/              ║
+    ║     (name them 001.jpg, 002.jpg, 003.jpg...)  ║
+    ║  2. Edit memories.js to update titles,        ║
+    ║     captions, dates, name, etc.               ║
+    ║  3. That's it! The engine handles everything. ║
+    ╚═══════════════════════════════════════════════╝
+  -->
+</main>
+
+<!-- ══════════════════════════════════════════════════════
+     APP SCRIPT
+══════════════════════════════════════════════════════════ -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
