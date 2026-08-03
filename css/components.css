@@ -284,14 +284,15 @@
   letter-spacing: var(--ls-wide);
 }
 
-/* 3D Envelope Container */
+/* 3D Envelope Container (decreased 2cm on left and right) */
 .intro-envelope-container {
   position: relative;
   perspective: 1400px;
   cursor: pointer;
   width: calc(100vw - 8cm);
+  height: calc(100vh - 2cm);
   max-width: 920px;
-  height: min(520px, 60vh);
+  max-height: 680px;
   overflow: visible;
 }
 
@@ -1242,86 +1243,29 @@
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 992px) {
-  .envelope-intro-wrapper {
-    padding: 1.5rem 1rem;
-  }
-  .intro-envelope-container {
-    width: calc(100vw - 2rem);
-    height: min(450px, 55vh);
-  }
-  .polaroids-scene {
-    flex-direction: column;
-    gap: 2rem;
-  }
-  .polaroids-note {
-    margin-left: 0 !important;
-    margin-top: 1rem;
-  }
-}
-
 @media (max-width: 768px) {
   .cursor-outer,
   .cursor-inner { display: none; }
 
-  /* Intro Envelope */
-  .envelope-intro-wrapper {
-    padding: 1rem 0.5rem;
-  }
-  .intro-envelope-container {
-    width: calc(100vw - 1.5rem);
-    height: min(380px, 50vh);
-  }
-  .envelope-to-tag {
-    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
-    bottom: 15px;
-  }
-  .intro-heart-seal {
-    width: 54px;
-    height: 54px;
-  }
-  .intro-heart-seal::before {
-    font-size: 20px;
-  }
-
-  /* Timeline */
   .timeline::before { left: 20px; }
   .timeline-item { flex-direction: column !important; align-items: flex-start; padding-left: 50px; }
   .timeline-dot { position: absolute; left: 10px; }
   .timeline-photo, .timeline-text { max-width: 100%; width: 100%; }
   .timeline-photo img { height: 180px; }
 
-  /* Envelope */
   .envelope { width: 260px; height: 180px; }
   .envelope-flap { height: 90px; }
 
-  /* Polaroids */
-  .floating-polaroid { width: 110px; }
-  .polaroid { margin-left: 0 !important; margin-right: 0 !important; }
+  .floating-polaroid { width: 120px; }
 
-  /* Film Strip */
-  .film-strip-perforations { width: 16px; }
-  .film-perf-hole { width: 8px; height: 6px; }
+  .film-strip-perforations { width: 20px; }
+  .film-perf-hole { width: 10px; height: 7px; }
 
-  /* Finale & Overlays */
-  .finale-message { margin-top: 240px; padding: 0 1rem; }
-  .letter-fs-paper, .pl-letter { padding: 1.8rem 1.2rem; }
+  .finale-message { margin-top: 380px; }
 }
 
 @media (max-width: 480px) {
-  .intro-envelope-container {
-    width: calc(100vw - 1rem);
-    height: 50vh;
-    max-height: 380px;
-  }
-  .envelope-prompt-title {
-    font-size: 1.1rem;
-  }
-  .envelope-to-tag {
-    font-size: 1.1rem;
-    white-space: normal;
-  }
-  .finale-message { margin-top: 180px; }
+  .finale-message { margin-top: 280px; }
 }
 
 /* ── Vignette ────────────────────────────────────────────── */
