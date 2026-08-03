@@ -76,21 +76,21 @@ function buildPolaroidsChapter(chapter) {
 
   sec.innerHTML = `
     <div class="ambient-orb orb-moon" style="width:400px;height:400px;bottom:-50px;left:-50px;"></div>
-    <div class="chapter-content" style="width:100%;display:flex;align-items:center;justify-content:center;padding:5rem 2rem;">
+    <div class="chapter-content" style="width:100%;display:flex;align-items:center;justify-content:center;padding:4rem 1.5rem;">
       <div class="polaroids-scene">
-        <div class="polaroid reveal-left" style="transform:rotate(${rotations[0]}deg);margin-right:-20px;z-index:2;" id="pol-a">
+        <div class="polaroid reveal-left" style="transform:rotate(${rotations[0]}deg);" id="pol-a">
           <span class="tape" style="--tape-rotate:${rotations[1]}deg;"></span>
-          <div class="img-placeholder" style="width:240px;height:240px;"></div>
+          <div class="img-placeholder" style="width:100%;aspect-ratio:1/1;"></div>
           <p class="polaroid-caption">${mem1 ? mem1.title : ''}</p>
         </div>
 
-        <div class="polaroid reveal-right" style="transform:rotate(${rotations[2]}deg);margin-left:-20px;z-index:1;margin-top:30px;" id="pol-b">
+        <div class="polaroid reveal-right" style="transform:rotate(${rotations[2]}deg);" id="pol-b">
           <span class="tape" style="--tape-rotate:${rotations[3]}deg;"></span>
-          <div class="img-placeholder" style="width:240px;height:240px;"></div>
+          <div class="img-placeholder" style="width:100%;aspect-ratio:1/1;"></div>
           <p class="polaroid-caption">${mem2 ? mem2.title : ''}</p>
         </div>
 
-        <div class="polaroids-note reveal delay-5" style="margin-left:40px;transform:rotate(${rotations[4]}deg);">
+        <div class="polaroids-note reveal delay-5" style="transform:rotate(${rotations[4]}deg);" id="pol-note">
           <p class="note-text">"${mem1 ? mem1.caption : ''}"</p>
           ${mem2 ? `<p class="note-text" style="margin-top:0.75rem;">"${mem2.caption}"</p>` : ''}
           <p class="note-signature">— Always ♡</p>
@@ -103,13 +103,13 @@ function buildPolaroidsChapter(chapter) {
   if (mem1) {
     const ph1 = sec.querySelector('#pol-a .img-placeholder');
     const img1 = buildImg(mem1, 'polaroid-img');
-    img1.style.cssText = 'width:240px;height:240px;';
+    img1.style.cssText = 'width:100%;aspect-ratio:1/1;object-fit:cover;';
     ph1.parentNode.replaceChild(img1, ph1);
   }
   if (mem2) {
     const ph2 = sec.querySelector('#pol-b .img-placeholder');
     const img2 = buildImg(mem2, 'polaroid-img');
-    img2.style.cssText = 'width:240px;height:240px;';
+    img2.style.cssText = 'width:100%;aspect-ratio:1/1;object-fit:cover;';
     ph2.parentNode.replaceChild(img2, ph2);
   }
 
