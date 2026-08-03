@@ -284,13 +284,14 @@
   letter-spacing: var(--ls-wide);
 }
 
-/* 3D Envelope Container — Compact, sleek horizontal rectangle */
+/* 3D Envelope Container */
 .intro-envelope-container {
   position: relative;
   perspective: 1400px;
   cursor: pointer;
-  width: min(460px, 85vw);
-  height: min(310px, 45vh);
+  width: calc(100vw - 8cm);
+  max-width: 920px;
+  height: min(520px, 60vh);
   overflow: visible;
 }
 
@@ -1246,8 +1247,8 @@
     padding: 1.5rem 1rem;
   }
   .intro-envelope-container {
-    width: min(440px, 88vw);
-    height: min(295px, 45vh);
+    width: calc(100vw - 2rem);
+    height: min(450px, 55vh);
   }
   .polaroids-scene {
     flex-direction: column;
@@ -1268,16 +1269,16 @@
     padding: 1rem 0.5rem;
   }
   .intro-envelope-container {
-    width: min(380px, 90vw);
-    height: min(255px, 42vh);
+    width: calc(100vw - 1.5rem);
+    height: min(380px, 50vh);
   }
   .envelope-to-tag {
-    font-size: clamp(0.9rem, 3.5vw, 1.25rem);
-    bottom: 10px;
+    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+    bottom: 15px;
   }
   .intro-heart-seal {
-    width: 44px;
-    height: 44px;
+    width: 54px;
+    height: 54px;
   }
   .intro-heart-seal::before {
     font-size: 20px;
